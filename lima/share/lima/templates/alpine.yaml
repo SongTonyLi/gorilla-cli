@@ -1,0 +1,21 @@
+# This template requires Lima v0.7.0 or later.
+# Using the Alpine 3.19 aarch64 image with vmType=vz requires macOS Ventura 13.3 or later.
+
+images:
+- location: "https://github.com/lima-vm/alpine-lima/releases/download/v0.2.38/alpine-lima-std-3.19.0-x86_64.iso"
+  arch: "x86_64"
+  digest: "sha512:e0c7e88e4cccc24d4e1b3593198cc0bbc3dbc12d07f1d935da0fa73e5b96e19bb5f83925b9fd06c28dfb2278fc4b941333cf2b2565d346c3e3bc5559a268a82d"
+- location: "https://github.com/lima-vm/alpine-lima/releases/download/v0.2.38/alpine-lima-std-3.19.0-aarch64.iso"
+  arch: "aarch64"
+  digest: "sha512:bf195270ca0e101353ba346f4d651c0518bdea6f2b3845dd43a5c29cb5e1046274579b918bed2f5fb38ce7e9b2eccabe7fcf8040c29c22a3aa3f7a92ef831df7"
+
+mounts:
+- location: "~"
+- location: "/tmp/lima"
+  writable: true
+
+# The built-in containerd installer does not support Alpine currently.
+# Hint: use the "rd" ISO instead of the "std" ISO to enable containerd: https://github.com/lima-vm/alpine-lima/releases/
+containerd:
+  system: false
+  user: false

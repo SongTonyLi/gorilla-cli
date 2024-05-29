@@ -88,8 +88,9 @@ def prefill_shell_cmd(cmd):
     # Use the new attributes
     termios.tcsetattr(stdin, termios.TCSANOW, newattr)
     # Write the selected command in stdin queue
-    for c in cmd:
-        fcntl.ioctl(stdin, termios.TIOCSTI, c)
+    os.write(stdin, cmd.encode())
+    # for c in cmd:
+    #     fcntl.ioctl(stdin, termios.TIOCSTI, c)
     # Restore TTY attributes for stdin
     termios.tcsetattr(stdin, termios.TCSADRAIN, oldattr)
 
